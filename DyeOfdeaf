@@ -417,5 +417,15 @@ UIS.InputChanged:Connect(function(input)
 end)
 
    end,
+
+
+
+
+local PlayerButton = PlayerTab:CreateButton({
+   Name = "Teleport to safety zone",
+   Callback = function()
+   
+   end,
+})
 })
 
