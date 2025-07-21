@@ -1,0 +1,288 @@
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+
+
+
+local Window = Rayfield:CreateWindow({
+   Name = "Dye Of deaf Script",
+   Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+   LoadingTitle = "Loading....",
+   LoadingSubtitle = "MADE BY MIA ",
+   ShowText = "Rayfield", -- for mobile users to unhide rayfield, change if you'd like
+   Theme = "Default", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+
+   ToggleUIKeybind = "K", -- The keybind to toggle the UI visibility (string like "K" or Enum.KeyCode)
+
+   DisableRayfieldPrompts = false,
+   DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
+
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = nil, -- Create a custom folder for your hub/game
+      FileName = "Big Hub"
+   },
+
+   Discord = {
+      Enabled = false, -- Prompt the user to join your Discord server if their executor supports it
+      Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+
+   KeySystem = false, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Untitled",
+      Subtitle = "Key System",
+      Note = "No method of obtaining the key is provided", -- Use this to tell the user how to get a key
+      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
+})
+
+
+
+
+local DeckTab = Window:CreateTab("Deck", 4483362458) -- Title, Image
+
+
+local DeckButton = DeckTab:CreateButton({
+   Name = "Guest 1337 deck",
+   Callback = function()
+   local args = {
+	{
+		Name = "Block",
+		Icon = "rbxassetid://106269699624346"
+	},
+	{
+		Name = "Punch",
+		Icon = "rbxassetid://115038969867995"
+	}
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Setup"):FireServer(unpack(args))
+   end,
+})
+
+
+
+local DeckButton = DeckTab:CreateButton({
+   Name = "gunslinger deck",
+   Callback = function()
+   local args = {
+	{
+		Name = "Revolver",
+		Icon = "rbxassetid://106269699624346"
+	},
+	{
+		Name = "Punch",
+		Icon = "rbxassetid://115038969867995"
+	}
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Setup"):FireServer(unpack(args))
+   end,
+})
+
+
+
+local DeckButton = DeckTab:CreateButton({
+   Name = "survivalist deck",
+   Callback = function()
+   local args = {
+	{
+		Name = "Cloak",
+		Icon = "rbxassetid://106269699624346"
+	},
+	{
+		Name = "Dash",
+		Icon = "rbxassetid://115038969867995"
+	}
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Setup"):FireServer(unpack(args))
+   end,
+})
+
+
+
+
+
+
+
+
+local DeckButton = DeckTab:CreateButton({
+   Name = "op survivalist deck",
+   Callback = function()
+   local args = {
+	{
+		Name = "Taunt",
+		Icon = "rbxassetid://106269699624346"
+	},
+	{
+		Name = "Block",
+		Icon = "rbxassetid://115038969867995"
+	}
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Setup"):FireServer(unpack(args))
+   end,
+})
+
+
+
+local DeckButton = DeckTab:CreateButton({
+   Name = "loveshot (no special avatar)",
+   Callback = function()
+   local args = {
+	{
+		Name = "Caretaker",
+		Icon = "rbxassetid://106269699624346"
+	},
+	{
+		Name = "Revolver",
+		Icon = "rbxassetid://115038969867995"
+	}
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Setup"):FireServer(unpack(args))
+   end,
+})
+
+
+
+local DeckButton = DeckTab:CreateButton({
+   Name = "good supporter",
+   Callback = function()
+   local args = {
+	{
+		Name = "Caretaker",
+		Icon = "rbxassetid://106269699624346"
+	},
+	{
+		Name = "Bonuspad",
+		Icon = "rbxassetid://115038969867995"
+	}
+}
+game:GetService("ReplicatedStorage"):WaitForChild("Setup"):FireServer(unpack(args))
+   end,
+})
+
+
+
+
+local MiscTab = Window:CreateTab("Misc", 4483362458) -- Title, Image
+
+
+local MiscButton = MiscTab:CreateButton({
+   Name = "fullbright",
+   Callback = function()
+   local Players = game:GetService("Players")
+local Lighting = game:GetService("Lighting")
+local UserInputService = game:GetService("UserInputService")
+local player = Players.LocalPlayer
+
+-- GUI
+local gui = Instance.new("ScreenGui")
+gui.Name = "FullbrightGui"
+gui.ResetOnSpawn = false
+gui.IgnoreGuiInset = true
+gui.Parent = player:WaitForChild("PlayerGui")
+
+-- Draggable Frame
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 160, 0, 30)
+frame.Position = UDim2.new(0, 15, 0, 120)
+frame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+frame.BorderSizePixel = 0
+frame.Active = true
+frame.Parent = gui
+
+-- Fullbright Toggle Button
+local button = Instance.new("TextButton")
+button.Size = UDim2.new(0.75, 0, 1, 0)
+button.Position = UDim2.new(0, 0, 0, 0)
+button.BackgroundColor3 = Color3.fromRGB(55, 55, 55)
+button.TextColor3 = Color3.new(1, 1, 1)
+button.Text = "FB: OFF"
+button.Font = Enum.Font.Gotham
+button.TextSize = 14
+button.Parent = frame
+
+-- Close "X" Button
+local close = Instance.new("TextButton")
+close.Size = UDim2.new(0.25, 0, 1, 0)
+close.Position = UDim2.new(0.75, 0, 0, 0)
+close.BackgroundColor3 = Color3.fromRGB(85, 20, 20)
+close.TextColor3 = Color3.new(1, 1, 1)
+close.Text = "X"
+close.Font = Enum.Font.GothamBold
+close.TextSize = 14
+close.Parent = frame
+
+-- Lighting logic
+local fullbright = false
+local original = {
+	Ambient = Lighting.Ambient,
+	OutdoorAmbient = Lighting.OutdoorAmbient,
+	Brightness = Lighting.Brightness,
+	ClockTime = Lighting.ClockTime,
+	GlobalShadows = Lighting.GlobalShadows,
+}
+
+local function toggleFullbright(on)
+	if on then
+		Lighting.Ambient = Color3.new(1, 1, 1)
+		Lighting.OutdoorAmbient = Color3.new(1, 1, 1)
+		Lighting.Brightness = 3
+		Lighting.ClockTime = 12
+		Lighting.GlobalShadows = false
+	else
+		for k, v in pairs(original) do
+			Lighting[k] = v
+		end
+	end
+end
+
+button.MouseButton1Click:Connect(function()
+	fullbright = not fullbright
+	toggleFullbright(fullbright)
+	button.Text = fullbright and "FB: ON" or "FB: OFF"
+end)
+
+-- Close button removes GUI
+close.MouseButton1Click:Connect(function()
+	gui:Destroy()
+end)
+
+-- Drag support
+local dragging, dragStart, startPos, dragInput
+local function update(input)
+	local delta = input.Position - dragStart
+	frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+		startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+end
+
+frame.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		dragging = true
+		dragStart = input.Position
+		startPos = frame.Position
+
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragging = false
+			end
+		end)
+	end
+end)
+
+frame.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		dragInput = input
+	end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+	if dragging and input == dragInput then
+		update(input)
+	end
+end)
+
+   end,
+})
