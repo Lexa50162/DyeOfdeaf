@@ -310,6 +310,21 @@ end)
    end,
 })
 
+local PlayerTab = Window:CreateTab("Player", 4483362458) -- Title, Image
+
+
+local PlayerSlider = PlayerTab:CreateSlider({
+   Name = "Speed",
+   Range = {0, 150},
+   Increment = 10,
+   Suffix = "MadRage",
+   CurrentValue = 10,
+   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
+   -- The variable (Value) is a number which correlates to the value the slider is currently at
+   end,
+})
 
 local PlayerButton = PlayerTab:CreateButton({
    Name = "teleport gui (better in one bounce and survivor round",
@@ -424,7 +439,111 @@ end)
 local PlayerButton = PlayerTab:CreateButton({
    Name = "Teleport to safety zone",
    Callback = function()
-   
+   local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- Create ScreenGui
+local gui = Instance.new("ScreenGui")
+gui.Name = "TeleportUI"
+gui.ResetOnSpawn = false
+gui.Parent = playerGui
+
+-- Create Frame to hold buttons (for drag)
+local dragFrame = Instance.new("Frame")
+dragFrame.Size = UDim2.new(0, 200, 0, 130)
+dragFrame.Position = UDim2.new(0, 20, 0, 100)
+dragFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+dragFrame.BackgroundTransparency = 0.2
+dragFrame.Active = true
+dragFrame.Draggable = true -- Makes it draggable on desktop
+dragFrame.Parent = gui
+
+-- Title
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 30)
+title.BackgroundTransparency = 1
+title.Text = "Teleport GUI"
+title.TextScaled = true
+title.TextColor3 = Color3.new(1, 1, 1)
+title.Font = Enum.Font.GothamBold
+title.Parent = dragFrame
+
+-- Create the high platform
+local antiVoidPart = Instance.new("Part")
+antiVoidPart.Name = "AntiVoidPart"
+antiVoidPart.Size = Vector3.new(500000, 1, 500000)
+antiVoidPart.Position = Vector3.new(0, 100000, 0) -- High in sky
+antiVoidPart.Anchored = true
+antiVoidPart.Transparency = 0.5
+antiVoidPart.Parent = workspace
+local originalCFrame = nil
+local toVoidBtn = Instance.new("TextButton")
+toVoidBtn.Size = UDim2.new(1, -20, 0, 40)
+toVoidBtn.Position = UDim2.new(0, 10, 0, 40)
+toVoidBtn.Text = "Teleport to deaf temu cleaner zone"
+toVoidBtn.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+toVoidBtn.TextScaled = true
+toVoidBtn.Font = Enum.Font.GothamBold
+toVoidBtn.TextColor3 = Color3.new(1, 1, 1)
+toVoidBtn.Parent = dragFrame
+local backBtn = Instance.new("TextButton")
+backBtn.Size = UDim2.new(1, -20, 0, 40)
+backBtn.Position = UDim2.new(0, 10, 0, 85)
+backBtn.Text = "Go Back"
+backBtn.BackgroundColor3 = Color3.fromRGB(255, 100, 100)
+backBtn.TextScaled = true
+backBtn.Font = Enum.Font.GothamBold
+backBtn.TextColor3 = Color3.new(1, 1, 1)
+backBtn.Parent = dragFrame
+
+-- Teleport to AntiVoid
+toVoidBtn.MouseButton1Click:Connect(function()
+	local char = player.Character or player.CharacterAdded:Wait()
+	local hrp = char:WaitForChild("HumanoidRootPart")
+	originalCFrame = hrp.CFrame
+	hrp.CFrame = antiVoidPart.CFrame + Vector3.new(0, 5, 0)
+end)
+backBtn.MouseButton1Click:Connect(function()
+	if originalCFrame then
+		local char = player.Character or player.CharacterAdded:Wait()
+		local hrp = char:WaitForChild("HumanoidRootPart")
+		hrp.CFrame = originalCFrame
+	end
+end)
+local UIS = game:GetService("UserInputService")
+local dragging, dragInput, dragStart, startPos
+
+dragFrame.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+		dragging = true
+		dragStart = input.Position
+		startPos = dragFrame.Position
+
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragging = false
+			end
+		end)
+	end
+end)
+
+dragFrame.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+		dragInput = input
+	end
+end)
+
+UIS.InputChanged:Connect(function(input)
+	if input == dragInput and dragging then
+		local delta = input.Position - dragStart
+		dragFrame.Position = UDim2.new(
+			startPos.X.Scale, startPos.X.Offset + delta.X,
+			startPos.Y.Scale, startPos.Y.Offset + delta.Y
+		)
+	end
+end)
+
    end,
 })
 })
